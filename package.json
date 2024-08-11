@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "prettier-format": "prettier --config .prettierrc '**/*.js' --write"
+    "prettier-format": "prettier --config .prettierrc '**/*.js' --write",
+    "dev": "npx cypress run --env configFile=dev",
+    "stage": "npx cypress run --env configFile=stage"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
