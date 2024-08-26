@@ -2,12 +2,15 @@
   "scripts": {
     "prettier-format": "prettier --config .prettierrc '**/*.js' --write",
     "dev": "npx cypress run --env configFile=dev",
-    "stage": "npx cypress run --env configFile=stage"
+    "stage": "npx cypress run --env configFile=stage",
+    "all": "npx cypress run --headless",
+    "cy:parallel": "cypress-parallel -s all -t 2 -d 'cypress/e2e/**/*.cy.js' -r 'cypress-mochawesome-reporter' -o 'cypressParallel=true'"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "cypress": "^13.13.1",
     "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-parallel": "^0.14.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^3.4.0",
