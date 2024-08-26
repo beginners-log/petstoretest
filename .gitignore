@@ -5,3 +5,4 @@ cypress/downloads
 .DS_Store
 .vscode
 config
+cypress/reports/
