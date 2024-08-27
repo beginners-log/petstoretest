@@ -6,3 +6,6 @@ cypress/downloads
 .vscode
 config
 cypress/reports/
+cypress/.tmp
+runner-results
+multi-reporter-config.json

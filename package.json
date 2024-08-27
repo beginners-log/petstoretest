@@ -4,7 +4,10 @@
     "dev": "npx cypress run --env configFile=dev",
     "stage": "npx cypress run --env configFile=stage",
     "all": "npx cypress run --headless",
-    "cy:parallel": "cypress-parallel -s all -t 2 -d 'cypress/e2e/**/*.cy.js' -r 'cypress-mochawesome-reporter' -o 'cypressParallel=true'"
+    "clean": "rimraf cypress/reports",
+    "cy:parallel": "npm run clean && cypress-parallel -s all -t 2 -d 'cypress/e2e/**/*.cy.js' -r 'cypress-mochawesome-reporter'",
+    "generate-report": "generate-mochawesome-report",
+    "test": "npm run clean && npm run cy:parallel || true && npm run generate-report"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -18,7 +21,8 @@
     "prettier": "3.3.3"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "rimraf": "^6.0.1"
   },
   "type": "module"
 }

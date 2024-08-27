@@ -2,6 +2,7 @@ import { defineConfig } from 'cypress'
 import fs from 'fs-extra'
 import path from 'path'
 import pluginMocha from 'cypress-mochawesome-reporter/plugin.js'
+import { beforeRunHook } from 'cypress-mochawesome-reporter/lib/index.js'
 
 const getConfigurationByFile = (file) => {
   const pathToConfigFile = path.resolve('config', `${file}.json`)
@@ -10,6 +11,7 @@ const getConfigurationByFile = (file) => {
 }
 
 export default defineConfig({
+  screenshotOnRunFailure: false,
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,
@@ -18,6 +20,10 @@ export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       pluginMocha(on)
+      on('before:run', async (details) => {
+        await beforeRunHook(details)
+      })
+
       const file = config.env.configFile || 'dev'
 
       return getConfigurationByFile(file)
