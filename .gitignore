@@ -5,3 +5,7 @@ cypress/downloads
 .DS_Store
 .vscode
 config
+cypress/reports/
+cypress/.tmp
+runner-results
+multi-reporter-config.json
