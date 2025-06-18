@@ -23,3 +23,43 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import 'cypress-ajv-schema-validator'
+
+Cypress.Commands.add('addPet', ({ path, method, headers, body }) => {
+  cy.request({
+    failOnStatusCode: false,
+    method: method,
+    url: path,
+    headers: headers,
+    body: body
+  })
+})
+
+Cypress.Commands.add('updatePet', ({ path, method, headers, body }) => {
+  cy.request({
+    failOnStatusCode: false,
+    method: method,
+    url: path,
+    headers: headers,
+    body: body
+  })
+})
+
+Cypress.Commands.add('findPetById', (path, id) => {
+  cy.request({
+    failOnStatusCode: false,
+    method: 'GET',
+    url: `${path}/${id}`,
+    headers: { accept: 'application/json' }
+  })
+})
+
+Cypress.Commands.add('deletePet', (path, id) => {
+  cy.request({
+    failOnStatusCode: false,
+    method: 'DELETE',
+    url: `${path}/${id}`,
+    headers: { accept: 'application/json' }
+  })
+})
