@@ -10,11 +10,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: npm install
+        run: npm install
+
       - name: Use secrets
         run: |
           mkdir config
           touch dev.json
           echo ${{ secrets.CY_DEV_ENV }} | base64 -d > config/dev.json
+          echo ${{ secrets.CY_ROUTES_ENV }} | base64 -d > config/routes.json
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
