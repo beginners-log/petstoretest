@@ -15,7 +15,8 @@ export default defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,
-    reportPageTitle: `reports_${new Date().toLocaleString().replace(',', '')}`
+    reportPageTitle: `reports_${new Date().toLocaleString().replace(',', '')}`,
+    overwrite: false
   },
   e2e: {
     setupNodeEvents(on, config) {

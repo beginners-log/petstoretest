@@ -5,9 +5,7 @@
     "stage": "npx cypress run --env configFile=stage",
     "all": "npx cypress run --headless",
     "clean": "rimraf cypress/reports",
-    "cy:parallel": "npm run clean && cypress-parallel -s all -t 2 -d 'cypress/e2e/**/*.cy.js' -r 'cypress-mochawesome-reporter'",
-    "generate-report": "generate-mochawesome-report",
-    "test": "npm run clean && npm run cy:parallel || true && npm run generate-report"
+    "test": "npm run clean && cypress run --spec 'cypress/e2e/**/*.cy.js' --reporter cypress-mochawesome-reporter"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
