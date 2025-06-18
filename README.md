@@ -1,2 +1,1 @@
-Articles in medium -> https://medium.com/@beginners_log
-implemented in this repo ✨
+Cypress API tests for [PetStore API](https://petstore.swagger.io/)
